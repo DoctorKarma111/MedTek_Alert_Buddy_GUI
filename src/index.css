@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap');
+
+@layer base {
+  :root {
+    /* Medrunner official colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+    
+    --primary: 0 100% 33%;  /* Medrunner Red #AA0000 */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 176 100% 40%;  /* Turquoise */
+    --secondary-foreground: 0 0% 100%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 176 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 100% 33%;
+
+    --radius: 8px;
+  }
+
+  .dark {
+    --background: 0 0% 20%;
+    --foreground: 0 0% 100%;
+    
+    --primary: 0 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 176 100% 40%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 176 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 0 100% 33%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Mohave', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Mohave', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .card-title {
+    font-family: 'Mohave', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
+
+/* Custom slider styles */
+.slider-thumb {
+  background-color: var(--slider-color) !important;
+  transition: background-color 0.3s ease;
+}
+
+[class*="SliderTrack"] {
+  background-color: var(--slider-color) !important;
+  opacity: 0.3;
+  transition: background-color 0.3s ease;
+}
+
+[class*="SliderRange"] {
+  background-color: var(--slider-color) !important;
+  transition: background-color 0.3s ease;
+}
