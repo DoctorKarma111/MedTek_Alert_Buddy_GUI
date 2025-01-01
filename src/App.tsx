@@ -8,14 +8,26 @@ import { SettingsForm } from "./components/settings/settings-form";
 import { UserGuide } from "./pages/user-guide";
 import { Stats } from "./pages/stats";
 import { useState } from "react";
+import { NotificationProvider } from "./providers/notification-provider";
+import { useNotification } from "./providers/notification-provider";
 
-function App() {
+function AppContent() {
   const [selectedPreset, setSelectedPreset] = useState(1);
   const mockUser = { name: "John Doe", rank: "Administrator" };
+  const { showNotification } = useNotification();
+
+  const handlePresetSelect = (preset: number) => {
+    setSelectedPreset(preset);
+    showNotification(`Default preset set to #${preset}`);
+  };
+
+  const handleSettingsSave = (settings: { apiToken: string; wledIp: string }) => {
+    console.log("Settings saved:", settings);
+    showNotification("Settings saved successfully");
+  };
 
   const handleBrightnessChange = (value: number) => {
     console.log("Brightness changed:", value);
-    // Add your brightness control logic here
   };
 
   return (
@@ -37,7 +49,7 @@ function App() {
                     />
                     <PresetSelector
                       selectedPreset={selectedPreset}
-                      onPresetSelect={setSelectedPreset}
+                      onPresetSelect={handlePresetSelect}
                     />
                     <BrightnessControl onBrightnessChange={handleBrightnessChange} />
                   </div>
@@ -47,15 +59,17 @@ function App() {
               <Route
                 path="/settings"
                 element={
-                  <div className="max-w-2xl mx-auto">
-                    <h1 className="text-3xl font-bold mb-6">Settings</h1>
-                    <SettingsForm
-                      onSave={console.log}
-                      initialSettings={{
-                        apiToken: "",
-                        wledIp: "",
-                      }}
-                    />
+                  <div className="space-y-6">
+                    <h1 className="text-3xl font-bold">Settings</h1>
+                    <div className="max-w-2xl">
+                      <SettingsForm
+                        onSave={handleSettingsSave}
+                        initialSettings={{
+                          apiToken: "",
+                          wledIp: "",
+                        }}
+                      />
+                    </div>
                   </div>
                 }
               />
@@ -65,6 +79,14 @@ function App() {
         </div>
       </div>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <NotificationProvider>
+      <AppContent />
+    </NotificationProvider>
   );
 }
 

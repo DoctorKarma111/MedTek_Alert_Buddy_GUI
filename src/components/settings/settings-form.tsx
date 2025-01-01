@@ -26,12 +26,12 @@ export function SettingsForm({ onSave, initialSettings }: SettingsFormProps) {
       <CardHeader>
         <CardTitle>Settings</CardTitle>
         <CardDescription>
-          Configure your Medrunner API and WLED connection settings
+          Configure your Light Buddy connection settings
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="apiToken">Medrunner API Token</Label>
+          <Label htmlFor="apiToken">Your Unique Medrunner API Token</Label>
           <Input
             id="apiToken"
             value={settings.apiToken}
